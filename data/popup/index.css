@@ -1,0 +1,50 @@
+body {
+  font-family: "Helvetica Neue",Helvetica,sans-serif;
+  font-size: 13px;
+  margin: 0;
+  height: 400px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 10px;
+  text-indent: 68px;
+  background: url('../icons/32.png') no-repeat center left 20px;
+  border-bottom: 1px solid #c5c5c5;
+  padding: 15px 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: opacity .2s ease-out;
+}
+li {
+  padding: 3px 10px;
+  cursor: pointer;
+}
+li:hover {
+  background-color: #eeeeee;
+}
+li:active {
+  opacity: 0.5;
+}
+
+input[type=button] {
+  background-color: #eeeeee;
+  border: none;
+  border-top: 1px solid #c5c5c5;
+  width: 100%;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.spacer {
+  pointer-events: none;
+  height: 10px;
+}
