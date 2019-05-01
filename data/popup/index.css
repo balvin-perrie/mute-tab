@@ -22,17 +22,18 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  transition: opacity .2s ease-out;
 }
 li {
   padding: 3px 10px;
   cursor: pointer;
+  transition: opacity 0.5s ease-out;
 }
 li:hover {
   background-color: #eeeeee;
 }
 li:active {
   opacity: 0.5;
+  transition: 0s;
 }
 
 input[type=button] {

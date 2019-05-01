@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "Mute Tab",
   "description": "Full control of noisy tabs with keyboard shortcut support",
   "permissions": [
@@ -12,6 +12,7 @@
       "background.js"
     ]
   },
+  "homepage_url": "https://add0n.com/mute-tab.html",
   "icons": {
     "16": "data/icons/16.png",
     "32": "data/icons/32.png",
