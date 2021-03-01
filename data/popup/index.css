@@ -14,8 +14,9 @@ h1 {
   margin-bottom: 10px;
   text-indent: 68px;
   background: url('../icons/32.png') no-repeat center left 20px;
-  border-bottom: 1px solid #c5c5c5;
+  border-bottom: 2px solid #eee;
   padding: 15px 0;
+  color: #a2a2a2;
 }
 
 ul {
@@ -24,12 +25,12 @@ ul {
   padding: 0;
 }
 li {
-  padding: 3px 10px;
+  padding: 5px 10px;
   cursor: pointer;
   transition: opacity 0.5s ease-out;
 }
 li:hover {
-  background-color: #eeeeee;
+  background-color: #eee;
 }
 li:active {
   opacity: 0.5;
@@ -37,9 +38,8 @@ li:active {
 }
 
 input[type=button] {
-  background-color: #eeeeee;
+  background-color: #eee;
   border: none;
-  border-top: 1px solid #c5c5c5;
   width: 100%;
   padding: 15px;
   cursor: pointer;
