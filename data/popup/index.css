@@ -6,6 +6,7 @@ body {
   width: 300px;
   display: flex;
   flex-direction: column;
+  user-select: none;
 }
 
 h1 {

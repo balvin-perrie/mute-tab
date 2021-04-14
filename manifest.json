@@ -31,25 +31,34 @@
       "description": "Mute Tab"
     },
     "mute-other-tabs-window": {
-      "description": "Mute Other Tabs in This Window"
+      "description": "Mute Other Noisy Tabs in This Window"
     },
     "mute-tabs-other-windows": {
-      "description": "Mute Tabs in Other Windows"
+      "description": "Mute Noisy Tabs in Other Windows"
     },
     "mute-all-other-tabs": {
-      "description": "Mute All Other Tabs"
+      "description": "Mute All Other Noisy Tabs"
     },
     "unmute-tab": {
-      "description": "UnMute Tab"
+      "description": "Stop Muting Tab"
     },
     "unmute-other-tabs-window": {
-      "description": "UnMute Other Tabs in This Window"
+      "description": "Stop Muting Other Noisy Tabs or Muted Tabs in This Window"
     },
     "unmute-tabs-other-windows": {
-      "description": "UnMute Tabs in Other Windows"
+      "description": "Stop Muting Noisy Tabs or Muted Tabs in Other Windows"
     },
     "unmute-all-other-tabs": {
-      "description": "UnMute All Other Tabs"
+      "description": "Stop Muting All Other Noisy Tabs or Muted Tabs"
+    },
+    "close-other-noisy-tabs-window": {
+      "description": "Close Other Noisy Tabs in This Window"
+    },
+    "close-noisy-tabs-other-windows": {
+      "description": "Close Noisy Tabs in Other Windows"
+    },
+    "close-all-other-noisy-tabs": {
+      "description": "Close All Other Noisy Tabs"
     }
   }
 }
