@@ -6,6 +6,6 @@ document.addEventListener('click', e => {
     chrome.runtime.sendMessage({
       command,
       forced: e.shiftKey
-    });
+    }, () => window.close());
   }
 });
