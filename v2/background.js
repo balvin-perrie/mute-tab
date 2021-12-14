@@ -10,7 +10,7 @@ const action = async (command, forced = false) => {
   }
   const tabs = [];
   if (command === 'mute-tab' || command === 'unmute-tab') {
-    forced = true;
+    forced = false;
     tabs.push(...await query({
       active: true,
       currentWindow: true
@@ -54,14 +54,28 @@ const action = async (command, forced = false) => {
       }
     }
     else if (command.startsWith('mute-')) {
-      if (tab.audible || forced) {
+      if (forced) {
+        if (tab.audible) {
+          chrome.tabs.update(tab.id, {
+            muted: true
+          });
+        }
+      }
+      else {
         chrome.tabs.update(tab.id, {
           muted: true
         });
       }
     }
     else {
-      if (tab.audible || tab.mutedInfo.muted || forced) {
+      if (forced) {
+        if (tab.audible || tab.mutedInfo.muted) {
+          chrome.tabs.update(tab.id, {
+            muted: false
+          });
+        }
+      }
+      else {
         chrome.tabs.update(tab.id, {
           muted: false
         });

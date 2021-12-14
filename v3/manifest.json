@@ -1,17 +1,14 @@
 {
-  "manifest_version": 2,
-  "version": "0.1.3",
+  "manifest_version": 3,
+  "version": "0.2.0",
   "name": "Mute Tab",
   "description": "__MSG_description__",
   "default_locale": "en",
   "permissions": [
     "storage"
    ],
-   "background": {
-    "persistent": false,
-    "scripts": [
-      "background.js"
-    ]
+  "background": {
+    "service_worker": "worker.js"
   },
   "homepage_url": "https://add0n.com/mute-tab.html",
   "icons": {
@@ -23,10 +20,13 @@
     "256": "data/icons/256.png",
     "512": "data/icons/512.png"
   },
-  "browser_action":{
+  "action":{
     "default_popup": "data/popup/index.html"
   },
   "commands": {
+    "_execute_action": {
+      "description": "Press the action button"
+    },
     "mute-tab": {
       "description": "Mute Tab"
     },
@@ -34,22 +34,22 @@
       "description": "Mute Other Noisy Tabs in This Window"
     },
     "mute-tabs-other-windows": {
-      "description": "Mute Noisy Tabs in Other Windows"
+      "description": "Mute Tabs in Other Windows"
     },
     "mute-all-other-tabs": {
-      "description": "Mute All Other Noisy Tabs"
+      "description": "Mute All Other Tabs"
     },
     "unmute-tab": {
       "description": "Stop Muting Tab"
     },
     "unmute-other-tabs-window": {
-      "description": "Stop Muting Other Noisy Tabs or Muted Tabs in This Window"
+      "description": "Stop Muting Other Tabs in This Window"
     },
     "unmute-tabs-other-windows": {
-      "description": "Stop Muting Noisy Tabs or Muted Tabs in Other Windows"
+      "description": "Stop Muting Tabs in Other Windows"
     },
     "unmute-all-other-tabs": {
-      "description": "Stop Muting All Other Noisy Tabs or Muted Tabs"
+      "description": "Stop Muting All Other Tabs"
     },
     "close-other-noisy-tabs-window": {
       "description": "Close Other Noisy Tabs in This Window"
