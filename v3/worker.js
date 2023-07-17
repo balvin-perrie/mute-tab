@@ -102,7 +102,6 @@ chrome.commands.onCommand.addListener(command => action(command, false));
 const observe = {
   normal(tab) {
     if (tab.incognito === false) {
-      console.log(tab);
       chrome.tabs.update(tab.id, {
         muted: true
       });
@@ -110,7 +109,6 @@ const observe = {
   },
   incognito(tab) {
     if (tab.incognito) {
-      console.log(tab);
       chrome.tabs.update(tab.id, {
         muted: true
       });

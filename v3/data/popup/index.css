@@ -1,6 +1,22 @@
+:root {
+  --bg-alt: #eee;
+  --fg: #4d5156;
+  --bg: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-alt: #323641;
+    --fg: #bdc1c6;
+    --bg: #202124;
+  }
+}
+
 body {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 13px;
+  color: var(--fg);
+  background-color: var(--bg);
   margin: 0;
   width: 300px;
   display: flex;
@@ -13,10 +29,9 @@ h1 {
   font-size: 20px;
   margin: 0;
   margin-bottom: 10px;
-  border-bottom: 2px solid #eee;
   padding: 15px 0;
-  color: #9e9e9e;
   text-align: center;
+  background-color: var(--bg-alt);
 }
 
 ul {
@@ -30,7 +45,7 @@ li {
   transition: opacity 0.5s ease-out;
 }
 li:hover {
-  background-color: #eee;
+  background-color: var(--bg-alt);
 }
 li:active {
   opacity: 0.5;
@@ -38,15 +53,16 @@ li:active {
 }
 
 input[type=button] {
-  background-color: #eee;
+  background-color: var(--bg-alt);
   border: none;
   width: 100%;
   padding: 15px;
   cursor: pointer;
+  color: var(--fg);
 }
 
 #tools {
-  border-top: 2px solid #eee;
+  border-top: 2px solid var(--bg-alt);
   padding: 10px 5px;
   display: grid;
   grid-template-columns: min-content 1fr;
