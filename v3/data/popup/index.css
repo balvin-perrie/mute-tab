@@ -51,11 +51,14 @@ li:active {
   opacity: 0.5;
   transition: 0s;
 }
-
+footer {
+  background-color: var(--bg-alt);
+  display: grid;
+  grid-template-columns: 1fr;
+}
 input[type=button] {
   background-color: var(--bg-alt);
   border: none;
-  width: 100%;
   padding: 15px;
   cursor: pointer;
   color: var(--fg);

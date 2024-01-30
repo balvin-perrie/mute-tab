@@ -144,6 +144,107 @@ chrome.storage.onChanged.addListener(ps => {
   }
 });
 
+/* context menu */
+const contexts = b => {
+  if (b) {
+    chrome.contextMenus.create({
+      id: 'mute-tab',
+      title: 'Mute Tab',
+      contexts: ['page']
+    });
+    chrome.contextMenus.create({
+      id: 'mute-other-tabs-window',
+      title: 'Mute Other Tabs in This Window',
+      contexts: ['page']
+    });
+    chrome.contextMenus.create({
+      id: 'mute-tabs-other-windows',
+      title: 'Mute Tabs in Other Windows',
+      contexts: ['page']
+    });
+    chrome.contextMenus.create({
+      id: 'mute-all-other-tabs',
+      title: 'Mute All Other Tabs',
+      contexts: ['page']
+    });
+    chrome.contextMenus.create({
+      id: 'mute-all-incognito-tabs',
+      title: 'Mute All Incognito Tabs',
+      contexts: ['page']
+    });
+    chrome.contextMenus.create({
+      id: 'separator-1',
+      contexts: ['page'],
+      type: 'separator'
+    });
+    chrome.contextMenus.create({
+      id: 'unmute-tab',
+      title: 'Stop Muting Tab',
+      contexts: ['page']
+    });
+    chrome.contextMenus.create({
+      id: 'unmute-other-tabs-window',
+      title: 'Stop Muting Other Tabs in This Window',
+      contexts: ['page']
+    });
+    chrome.contextMenus.create({
+      id: 'unmute-tabs-other-windows',
+      title: 'Stop Muting Tabs in Other Windows',
+      contexts: ['page']
+    });
+    chrome.contextMenus.create({
+      id: 'unmute-all-other-tabs',
+      title: 'Stop Muting All Other Tabs',
+      contexts: ['page']
+    });
+    chrome.contextMenus.create({
+      id: 'unmute-all-incognito-tabs',
+      title: 'Stop Muting All Incognito Tabs',
+      contexts: ['page']
+    });
+    chrome.contextMenus.create({
+      id: 'separator-2',
+      contexts: ['page'],
+      type: 'separator'
+    });
+    chrome.contextMenus.create({
+      id: 'close-other-noisy-tabs-window',
+      title: 'Close Other Noisy Tabs in This Window',
+      contexts: ['page']
+    });
+    chrome.contextMenus.create({
+      id: 'close-noisy-tabs-other-windows',
+      title: 'Close Noisy Tabs in Other Windows',
+      contexts: ['page']
+    });
+    chrome.contextMenus.create({
+      id: 'close-all-other-noisy-tabs',
+      title: 'Close All Other Noisy Tabs',
+      contexts: ['page']
+    });
+  }
+  else {
+    chrome.contextMenus.removeAll();
+  }
+};
+
+chrome.storage.onChanged.addListener(ps => {
+  if (ps['page-context']) {
+    contexts(ps['page-context'].newValue);
+  }
+});
+{
+  const once = () => chrome.storage.local.get({
+    'page-context': false
+  }, prefs => contexts(prefs['page-context']));
+
+  chrome.runtime.onInstalled.addListener(once);
+  if (/Firefox/.test(navigator.userAgent)) {
+    chrome.runtime.onStartup.addListener(once);
+  }
+}
+chrome.contextMenus.onClicked.addListener(info => action(info.menuItemId, false));
+
 /* FAQs & Feedback */
 {
   const {management, runtime: {onInstalled, setUninstallURL, getManifest}, storage, tabs} = chrome;
