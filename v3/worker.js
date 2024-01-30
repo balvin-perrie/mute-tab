@@ -147,6 +147,9 @@ chrome.storage.onChanged.addListener(ps => {
 /* context menu */
 const contexts = b => {
   if (b) {
+    chrome.contextMenus.onClicked.removeListener(contexts.onClicked);
+    chrome.contextMenus.onClicked.addListener(contexts.onClicked);
+
     chrome.contextMenus.create({
       id: 'mute-tab',
       title: 'Mute Tab',
@@ -224,9 +227,13 @@ const contexts = b => {
     });
   }
   else {
-    chrome.contextMenus.removeAll();
+    if (chrome.contextMenus) {
+      chrome.contextMenus.onClicked.removeListener(contexts.onClicked);
+      chrome.contextMenus.removeAll();
+    }
   }
 };
+contexts.onClicked = info => action(info.menuItemId, false);
 
 chrome.storage.onChanged.addListener(ps => {
   if (ps['page-context']) {
@@ -243,7 +250,7 @@ chrome.storage.onChanged.addListener(ps => {
     chrome.runtime.onStartup.addListener(once);
   }
 }
-chrome.contextMenus.onClicked.addListener(info => action(info.menuItemId, false));
+
 
 /* FAQs & Feedback */
 {

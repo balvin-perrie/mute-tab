@@ -10,8 +10,15 @@ const validate = () => new Promise(resolve => chrome.extension.isAllowedIncognit
   resolve();
 }));
 
-const permission = () => chrome.permissions.request({
-  permissions: ['contextMenus']
+const permission = () => new Promise(resolve => {
+  try {
+    chrome.permissions.request({
+      permissions: ['contextMenus']
+    }, resolve);
+  }
+  catch (e) { // Firefox
+    resolve(true);
+  }
 });
 
 document.addEventListener('click', async e => {
