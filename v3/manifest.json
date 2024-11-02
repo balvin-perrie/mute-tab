@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "0.2.2",
+  "version": "0.2.3",
   "name": "Mute Tab",
   "description": "__MSG_description__",
   "default_locale": "en",
@@ -11,7 +11,8 @@
     "contextMenus"
   ],
   "background": {
-    "service_worker": "worker.js"
+    "service_worker": "worker.js",
+    "scripts": ["worker.js"]
   },
   "homepage_url": "https://webextension.org/listing/mute-tab.html",
   "icons": {
@@ -60,6 +61,12 @@
     },
     "close-all-other-noisy-tabs": {
       "description": "Close All Other Noisy Tabs"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{b0ee5055-362a-44d4-804f-7358ef544ec9}",
+      "strict_min_version": "128.0"
     }
   }
 }
