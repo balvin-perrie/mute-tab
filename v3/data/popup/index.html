@@ -6,38 +6,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <h1>Mute Tab</h1>
-  <div style="flex: 1">
-    <ul>
-      <li data-command="mute-tab">Mute Tab</li>
-      <li title="Use Shift key to only mute audible tabs" data-command="mute-other-tabs-window">Mute Other Tabs in This Window</li>
-      <li title="Use Shift key to only mute audible tabs" data-command="mute-tabs-other-windows">Mute Tabs in Other Windows</li>
-      <li title="Use Shift key to only mute audible tabs" data-command="mute-all-other-tabs">Mute All Other Tabs</li>
-      <li title="Use Shift key to only mute audible tabs" data-command="mute-all-incognito-tabs">Mute All Incognito Tabs</li>
-      <li class="spacer"></li>
-      <li data-command="unmute-tab">Stop Muting Tab</li>
-      <li title="Use Shift key to limit unmuting only to audible and muted tabs" data-command="unmute-other-tabs-window">Stop Muting Other Tabs in This Window</li>
-      <li title="Use Shift key to limit unmuting only to audible and muted tabs" data-command="unmute-tabs-other-windows">Stop Muting Tabs in Other Windows</li>
-      <li title="Use Shift key to limit unmuting only to audible and muted tabs" data-command="unmute-all-other-tabs">Stop Muting All Other Tabs</li>
-      <li title="Use Shift key to limit unmuting only to audible and muted tabs" data-command="unmute-all-incognito-tabs">Stop Muting All Incognito Tabs</li>
-      <li class="spacer"></li>
-      <li data-command="close-other-noisy-tabs-window">Close Other Noisy Tabs in This Window</li>
-      <li data-command="close-noisy-tabs-other-windows">Close Noisy Tabs in Other Windows</li>
-      <li data-command="close-all-other-noisy-tabs">Close All Other Noisy Tabs</li>
-      <li class="spacer"></li>
-    </ul>
+  <div>
+    <h1>Mute Tab</h1>
+    <div style="flex: 1">
+      <ul>
+        <li data-command="mute-tab">Mute Tab</li>
+        <li title="Use Shift key to only mute audible tabs" data-command="mute-other-tabs-window">Mute Other Tabs in This Window</li>
+        <li title="Use Shift key to only mute audible tabs" data-command="mute-tabs-other-windows">Mute Tabs in Other Windows</li>
+        <li title="Use Shift key to only mute audible tabs" data-command="mute-all-other-tabs">Mute All Other Tabs</li>
+        <li title="Use Shift key to only mute audible tabs" data-command="mute-all-incognito-tabs">Mute All Incognito Tabs</li>
+        <li class="spacer"></li>
+        <li data-command="unmute-tab">Stop Muting Tab</li>
+        <li title="Use Shift key to limit unmuting only to audible and muted tabs" data-command="unmute-other-tabs-window">Stop Muting Other Tabs in This Window</li>
+        <li title="Use Shift key to limit unmuting only to audible and muted tabs" data-command="unmute-tabs-other-windows">Stop Muting Tabs in Other Windows</li>
+        <li title="Use Shift key to limit unmuting only to audible and muted tabs" data-command="unmute-all-other-tabs">Stop Muting All Other Tabs</li>
+        <li title="Use Shift key to limit unmuting only to audible and muted tabs" data-command="unmute-all-incognito-tabs">Stop Muting All Incognito Tabs</li>
+        <li class="spacer"></li>
+        <li data-command="close-other-noisy-tabs-window">Close Other Noisy Tabs in This Window</li>
+        <li data-command="close-noisy-tabs-other-windows">Close Noisy Tabs in Other Windows</li>
+        <li data-command="close-all-other-noisy-tabs">Close All Other Noisy Tabs</li>
+        <li class="spacer"></li>
+      </ul>
+    </div>
+    <div id="tools">
+      <input type="checkbox" id="silent-normal">
+      <label for="silent-normal">Monitor and Mute all new Tabs (not incognito)</label>
+      <input type="checkbox" id="silent-incognito">
+      <label for="silent-incognito">Monitor and Mute all new Incognito Tabs</label>
+      <input type="checkbox" id="page-context">
+      <label for="page-context">Show "page" context menu</label>
+    </div>
+    <footer>
+      <input type="button" value="List Noisy Tabs" data-command="tabs-permission">
+      <input type="button" value="Help" data-command="faqs">
+    </footer>
   </div>
-  <div id="tools">
-    <input type="checkbox" id="silent-normal">
-    <label for="silent-normal">Monitor and Mute all new Tabs (not incognito)</label>
-    <input type="checkbox" id="silent-incognito">
-    <label for="silent-incognito">Monitor and Mute all new Incognito Tabs</label>
-    <input type="checkbox" id="page-context">
-    <label for="page-context">Show "page" context menu</label>
-  </div>
-  <footer>
-    <input type="button" value="Help" data-command="faqs">
-  </footer>
+  <template id="entry">
+    <a href="#" class="tab">
+      <img src="">
+    </a>
+  </template>
+  <div class="tabs"></div>
   <script type="text/javascript" src="index.js"></script>
 </body>
 </html>

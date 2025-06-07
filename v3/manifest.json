@@ -5,10 +5,12 @@
   "description": "__MSG_description__",
   "default_locale": "en",
   "permissions": [
-    "storage"
+    "storage",
+    "contextMenus"
    ],
   "optional_permissions": [
-    "contextMenus"
+    "tabs",
+    "favicon"
   ],
   "background": {
     "service_worker": "worker.js",

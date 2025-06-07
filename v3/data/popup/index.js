@@ -21,9 +21,51 @@ const permission = () => new Promise(resolve => {
   }
 });
 
+const list = async () => {
+  const tabs = await chrome.tabs.query({});
+  const t = document.getElementById('entry');
+
+  document.body.setAttribute('tabs-ready', true);
+  if (tabs.some(t => t.audible)) {
+    document.body.setAttribute('tabs', true);
+  }
+
+  for (const tab of tabs) {
+    if (tab.audible === false) {
+      continue;
+    }
+    const clone = document.importNode(t.content, true);
+    const a = clone.querySelector('a');
+    a.title = tab.title;
+    a.dataset.tid = tab.id;
+    a.dataset.wid = tab.windowId;
+    a.dataset.command = 'focus-tab';
+    clone.querySelector('img').src = `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${tab.url}&size=32`;
+
+    document.querySelector('.tabs').append(clone);
+  }
+};
+
 document.addEventListener('click', async e => {
   const command = e.target.dataset.command;
-  if (command) {
+  if (command === 'tabs-permission') {
+    chrome.permissions.request({
+      permissions: ['tabs', 'favicon']
+    }, granted => {
+      if (granted) {
+        list();
+      }
+    });
+  }
+  else if (command === 'focus-tab') {
+    chrome.tabs.update(Number(e.target.dataset.tid), {
+      active: true
+    });
+    chrome.windows.update(Number(e.target.dataset.wid), {
+      focused: true
+    });
+  }
+  else if (command) {
     if (command.includes('incognito')) {
       await validate();
     }
@@ -60,5 +102,13 @@ document.getElementById('tools').addEventListener('change', async e => {
     chrome.storage.local.set({
       [e.target.id]: e.target.checked
     });
+  }
+});
+
+chrome.permissions.contains({
+  permissions: ['tabs', 'favicon']
+}, granted => {
+  if (granted) {
+    list();
   }
 });

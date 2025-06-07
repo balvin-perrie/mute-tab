@@ -2,6 +2,7 @@
   --bg-alt: #eee;
   --fg: #4d5156;
   --bg: #fff;
+  --scrl: #828282;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,10 +19,14 @@ body {
   color: var(--fg);
   background-color: var(--bg);
   margin: 0;
+  display: grid;
   width: 300px;
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: 300px 0;
   user-select: none;
+}
+body[tabs] {
+  grid-template-columns: 300px 52px;
+  width: 352px;
 }
 
 h1 {
@@ -52,9 +57,19 @@ li:active {
   transition: 0s;
 }
 footer {
-  background-color: var(--bg-alt);
   display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1px;
+  & > * {
+    background-color: var(--bg-alt);
+  }
+}
+body[tabs-ready] footer {
   grid-template-columns: 1fr;
+
+  input[data-command="tabs-permission"] {
+    display: none;
+  }
 }
 input[type=button] {
   background-color: var(--bg-alt);
@@ -76,4 +91,26 @@ input[type=button] {
 .spacer {
   pointer-events: none;
   height: 1px;
+}
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-direction: column;
+  overflow: auto;
+  padding-block: 10px;
+  height: calc(100vh - 20px);
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrl) var(--bg);
+}
+body[tabs] > .tabs {
+  border-left: solid 2px var(--bg-alt);
+}
+.tab {
+  * {
+    pointer-events: none;
+  }
+  img {
+    width: 24px;
+  }
 }
