@@ -3,6 +3,7 @@
   --fg: #4d5156;
   --bg: #fff;
   --scrl: #828282;
+  --notify: #f00;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -107,10 +108,22 @@ body[tabs] > .tabs {
   border-left: solid 2px var(--bg-alt);
 }
 .tab {
+  position: relative;
   * {
     pointer-events: none;
   }
   img {
     width: 24px;
   }
+}
+.tab[muted=true]::after {
+  content: '';
+  height: 5px;
+  background-color: var(--notify);
+  display: block;
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  width: 5px;
+  border-radius: 50%;
 }

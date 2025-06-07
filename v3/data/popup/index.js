@@ -36,7 +36,9 @@ const list = async () => {
     }
     const clone = document.importNode(t.content, true);
     const a = clone.querySelector('a');
-    a.title = tab.title;
+    const b = tab.mutedInfo?.muted;
+    a.setAttribute('muted', b);
+    a.title = tab.title + (b ? ' (muted)' : '');
     a.dataset.tid = tab.id;
     a.dataset.wid = tab.windowId;
     a.dataset.command = 'focus-tab';

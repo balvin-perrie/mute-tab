@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "0.2.3",
+  "version": "0.2.4",
   "name": "Mute Tab",
   "description": "__MSG_description__",
   "default_locale": "en",
@@ -18,16 +18,16 @@
   },
   "homepage_url": "https://webextension.org/listing/mute-tab.html",
   "icons": {
-    "16": "/data/icons/16.png",
-    "32": "/data/icons/32.png",
-    "48": "/data/icons/48.png",
-    "64": "/data/icons/64.png",
-    "128": "/data/icons/128.png",
-    "256": "/data/icons/256.png",
-    "512": "/data/icons/512.png"
+    "16": "data/icons/16.png",
+    "32": "data/icons/32.png",
+    "48": "data/icons/48.png",
+    "64": "data/icons/64.png",
+    "128": "data/icons/128.png",
+    "256": "data/icons/256.png",
+    "512": "data/icons/512.png"
   },
   "action":{
-    "default_popup": "/data/popup/index.html"
+    "default_popup": "data/popup/index.html"
   },
   "commands": {
     "_execute_action": {},
