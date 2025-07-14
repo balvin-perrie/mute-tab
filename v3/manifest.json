@@ -27,10 +27,23 @@
     "512": "data/icons/512.png"
   },
   "action":{
-    "default_popup": "data/popup/index.html"
+    "default_popup": "data/popup/index.html",
+    "default_title": "Tab can play audio"
   },
   "commands": {
     "_execute_action": {},
+    "toggle-tab": {
+      "description": "Toggle Tab"
+    },
+    "toggle-other-tabs-window": {
+      "description": "Toggle Other Noisy Tabs in This Window"
+    },
+    "toggle-tabs-other-windows": {
+      "description": "Toggle Tabs in Other Windows"
+    },
+    "toggle-all-other-tabs": {
+      "description": "Toggle All Other Tabs"
+    },
     "mute-tab": {
       "description": "Mute Tab"
     },

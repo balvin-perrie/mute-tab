@@ -49,7 +49,7 @@ const list = async () => {
 };
 
 document.addEventListener('click', async e => {
-  const command = e.target.dataset.command;
+  let command = e.target.dataset.command;
   if (command === 'tabs-permission') {
     chrome.permissions.request({
       permissions: ['tabs', 'favicon']
@@ -70,6 +70,15 @@ document.addEventListener('click', async e => {
   else if (command) {
     if (command.includes('incognito')) {
       await validate();
+    }
+
+    if (command.startsWith('toggle-')) {
+      if (e.ctrlKey || e.metaKey) {
+        command = command.replace('toggle-', 'mute-');
+      }
+      else if (e.altKey) {
+        command = command.replace('toggle-', 'unmute-');
+      }
     }
 
     chrome.runtime.sendMessage({
