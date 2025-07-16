@@ -49,7 +49,12 @@ const list = async () => {
 };
 
 document.addEventListener('click', async e => {
-  let command = e.target.dataset.command;
+  const target = e.target.closest('[data-command]');
+  if (!target) {
+    return;
+  }
+
+  let command = target.dataset.command;
   if (command === 'tabs-permission') {
     chrome.permissions.request({
       permissions: ['tabs', 'favicon']

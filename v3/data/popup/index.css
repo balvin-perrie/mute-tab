@@ -1,4 +1,5 @@
 :root {
+  --width: 340px;
   --bg-alt: #eee;
   --fg: #4d5156;
   --bg: #fff;
@@ -21,41 +22,43 @@ body {
   background-color: var(--bg);
   margin: 0;
   display: grid;
-  width: 300px;
-  grid-template-columns: 300px 0;
+  width: var(--width);
+  grid-template-columns: var(--width) 0;
   user-select: none;
 }
 body[tabs] {
-  grid-template-columns: 300px 52px;
-  width: 352px;
+  grid-template-columns: var(--width) 52px;
+  width: calc(var(--width) + 52px);
 }
 
 h1 {
   font-weight: normal;
   font-size: 20px;
   margin: 0;
-  margin-bottom: 10px;
   padding: 15px 0;
   text-align: center;
   background-color: var(--bg-alt);
 }
+table {
+  border-collapse: collapse;
+  margin-block: 10px;
+  width: 100%;
+  table-layout: fixed;
 
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-li {
-  padding: 5px 10px;
-  cursor: pointer;
-  transition: opacity 0.5s ease-out;
-}
-li:hover {
-  background-color: var(--bg-alt);
-}
-li:active {
-  opacity: 0.5;
-  transition: 0s;
+  tr:hover {
+    background-color: var(--bg-alt);
+  }
+  tr:active {
+    opacity: 0.5;
+    transition: 0s;
+  }
+  td {
+    cursor: pointer;
+    padding: 5px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 footer {
   display: grid;
@@ -91,7 +94,6 @@ input[type=button] {
 
 .spacer {
   pointer-events: none;
-  height: 1px;
 }
 .tabs {
   display: flex;

@@ -17,8 +17,6 @@ const icon = (tabId, muted) => {
 };
 
 const action = async (command, forced = false) => {
-  console.log(command, forced);
-
   if (command === 'faqs') {
     return chrome.tabs.create({
       url: chrome.runtime.getManifest().homepage_url
@@ -194,115 +192,115 @@ chrome.storage.onChanged.addListener(ps => {
 });
 
 /* context menu */
-const contexts = b => {
+const contexts = (b, contexts = ['page']) => {
   if (b) {
     chrome.contextMenus.onClicked.removeListener(contexts.onClicked);
     chrome.contextMenus.onClicked.addListener(contexts.onClicked);
 
     chrome.contextMenus.create({
       id: 'toggle-tab',
-      title: 'Toggle Tab',
-      contexts: ['page']
+      title: 'Toggle Mute',
+      contexts
     });
     chrome.contextMenus.create({
       id: 'toggle-other-tabs-window',
-      title: 'Toggle Other Tabs in This Window',
-      contexts: ['page']
+      title: 'Toggle Mute for Other Tabs in This Window',
+      contexts
     });
     chrome.contextMenus.create({
       id: 'toggle-tabs-other-windows',
-      title: 'Toggle Tabs in Other Windows',
-      contexts: ['page']
+      title: 'Toggle Mute for Tabs in Other Windows',
+      contexts
     });
     chrome.contextMenus.create({
       id: 'toggle-all-other-tabs',
-      title: 'Toggle All Other Tabs',
-      contexts: ['page']
+      title: 'Toggle Mute for All Other Tabs',
+      contexts
     });
     chrome.contextMenus.create({
       id: 'toggle-all-incognito-tabs',
-      title: 'Toggle All Incognito Tabs',
-      contexts: ['page']
+      title: 'Toggle Mute for All Incognito Tabs',
+      contexts
     });
     chrome.contextMenus.create({
       id: 'separator-0',
-      contexts: ['page'],
+      contexts,
       type: 'separator'
     });
     chrome.contextMenus.create({
       id: 'mute-tab',
       title: 'Mute Tab',
-      contexts: ['page']
+      contexts
     });
     chrome.contextMenus.create({
       id: 'mute-other-tabs-window',
       title: 'Mute Other Tabs in This Window',
-      contexts: ['page']
+      contexts
     });
     chrome.contextMenus.create({
       id: 'mute-tabs-other-windows',
       title: 'Mute Tabs in Other Windows',
-      contexts: ['page']
+      contexts
     });
     chrome.contextMenus.create({
       id: 'mute-all-other-tabs',
       title: 'Mute All Other Tabs',
-      contexts: ['page']
+      contexts
     });
     chrome.contextMenus.create({
       id: 'mute-all-incognito-tabs',
       title: 'Mute All Incognito Tabs',
-      contexts: ['page']
+      contexts
     });
     chrome.contextMenus.create({
       id: 'separator-1',
-      contexts: ['page'],
+      contexts,
       type: 'separator'
     });
     chrome.contextMenus.create({
       id: 'unmute-tab',
       title: 'Stop Muting Tab',
-      contexts: ['page']
+      contexts
     });
     chrome.contextMenus.create({
       id: 'unmute-other-tabs-window',
       title: 'Stop Muting Other Tabs in This Window',
-      contexts: ['page']
+      contexts
     });
     chrome.contextMenus.create({
       id: 'unmute-tabs-other-windows',
       title: 'Stop Muting Tabs in Other Windows',
-      contexts: ['page']
+      contexts
     });
     chrome.contextMenus.create({
       id: 'unmute-all-other-tabs',
       title: 'Stop Muting All Other Tabs',
-      contexts: ['page']
+      contexts
     });
     chrome.contextMenus.create({
       id: 'unmute-all-incognito-tabs',
       title: 'Stop Muting All Incognito Tabs',
-      contexts: ['page']
+      contexts
     });
     chrome.contextMenus.create({
       id: 'separator-2',
-      contexts: ['page'],
+      contexts,
       type: 'separator'
     });
     chrome.contextMenus.create({
       id: 'close-other-noisy-tabs-window',
       title: 'Close Other Noisy Tabs in This Window',
-      contexts: ['page']
+      contexts
     });
     chrome.contextMenus.create({
       id: 'close-noisy-tabs-other-windows',
       title: 'Close Noisy Tabs in Other Windows',
-      contexts: ['page']
+      contexts
     });
     chrome.contextMenus.create({
       id: 'close-all-other-noisy-tabs',
       title: 'Close All Other Noisy Tabs',
-      contexts: ['page']
+      contexts
     });
   }
   else {

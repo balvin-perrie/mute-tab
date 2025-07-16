@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "0.2.5",
+  "version": "0.2.6",
   "name": "Mute Tab",
   "description": "__MSG_description__",
   "default_locale": "en",
@@ -33,16 +33,16 @@
   "commands": {
     "_execute_action": {},
     "toggle-tab": {
-      "description": "Toggle Tab"
+      "description": "Toggle Mute"
     },
     "toggle-other-tabs-window": {
-      "description": "Toggle Other Noisy Tabs in This Window"
+      "description": "Toggle Mute for Other Tabs in This Window"
     },
     "toggle-tabs-other-windows": {
-      "description": "Toggle Tabs in Other Windows"
+      "description": "Toggle Mute for Tabs in Other Windows"
     },
     "toggle-all-other-tabs": {
-      "description": "Toggle All Other Tabs"
+      "description": "Toggle Mute for All Other Tabs"
     },
     "mute-tab": {
       "description": "Mute Tab"

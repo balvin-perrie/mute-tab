@@ -9,27 +9,57 @@
   <div>
     <h1>Mute or Stop Muting Tab</h1>
     <div style="flex: 1">
-      <ul>
-        <li data-command="toggle-tab" title="Use Command key or Ctrl key for muting
-Use Alt key for stop muting">Toggle Tab</li>
-        <li title="Use Command key or Ctrl key for muting
+      <table>
+        <colgroup>
+          <col width="110">
+          <col>
+        </colgroup>
+        <tr data-command="toggle-tab" title="Use Command key or Ctrl key for muting
+Use Alt key for stop muting">
+          <td>Toggle Mute</td>
+          <td>This Tab</td>
+        </tr>
+        <tr title="Use Command key or Ctrl key for muting
 Use Alt key for stop muting
-Use Shift key to only mute audible tabs or to limit unmuting only to audible and muted tabs" data-command="toggle-other-tabs-window">Toggle Other Tabs in This Window</li>
-        <li title="Use Command key or Ctrl key for muting
+Use Shift key to only mute audible tabs or to limit unmuting only to audible and muted tabs" data-command="toggle-other-tabs-window">
+          <td>Toggle Mute</td>
+          <td>Other Tabs in This Window</td>
+        </tr>
+        <tr title="Use Command key or Ctrl key for muting
 Use Alt key for stop muting
-Use Shift key to only mute audible tabs or to limit unmuting only to audible and muted tabs" data-command="toggle-tabs-other-windows">Toggle Tabs in Other Windows</li>
-        <li title="Use Command key or Ctrl key for muting
+Use Shift key to only mute audible tabs or to limit unmuting only to audible and muted tabs" data-command="toggle-tabs-other-windows">
+          <td>Toggle Mute</td>
+          <td>Tabs in Other Windows</td>
+        </tr>
+        <tr title="Use Command key or Ctrl key for muting
 Use Alt key for stop muting
-Use Shift key to only mute audible tabs or to limit unmuting only to audible and muted tabs" data-command="toggle-all-other-tabs">Toggle All Other Tabs</li>
-        <li title="Use Command key or Ctrl key for muting
+Use Shift key to only mute audible tabs or to limit unmuting only to audible and muted tabs" data-command="toggle-all-other-tabs">
+          <td>Toggle Mute</td>
+          <td>All Other Tabs</td>
+        </tr>
+        <tr title="Use Command key or Ctrl key for muting
 Use Alt key for stop muting
-Use Shift key to only mute audible tabs or to limit unmuting only to audible and muted tabs" data-command="toggle-all-incognito-tabs">Toggle All Incognito Tabs</li>
-        <li class="spacer"></li>
-        <li data-command="close-other-noisy-tabs-window">Close Other Noisy Tabs in This Window</li>
-        <li data-command="close-noisy-tabs-other-windows">Close Noisy Tabs in Other Windows</li>
-        <li data-command="close-all-other-noisy-tabs">Close All Other Noisy Tabs</li>
-        <li class="spacer"></li>
-      </ul>
+Use Shift key to only mute audible tabs or to limit unmuting only to audible and muted tabs" data-command="toggle-all-incognito-tabs">
+          <td>Toggle Mute</td>
+          <td>All Incognito Tabs</td>
+        </tr>
+        <tr class="spacer">
+          <td></td>
+          <td></td>
+        </tr>
+        <tr data-command="close-other-noisy-tabs-window">
+          <td>Close</td>
+          <td>Other Noisy Tabs in This Window</td>
+        </tr>
+        <tr data-command="close-noisy-tabs-other-windows">
+          <td>Close</td>
+          <td>Noisy Tabs in Other Windows</td>
+        </tr>
+        <tr data-command="close-all-other-noisy-tabs">
+          <td>Close</td>
+          <td>All Other Noisy Tabs</td>
+        </tr>
+      </table>
     </div>
     <div id="tools">
       <input type="checkbox" id="silent-normal">
