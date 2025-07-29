@@ -32,6 +32,9 @@
   },
   "commands": {
     "_execute_action": {},
+    "focus-mode": {
+      "description": "Focus Mode"
+    },
     "toggle-tab": {
       "description": "Toggle Mute"
     },

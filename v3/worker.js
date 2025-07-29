@@ -22,6 +22,21 @@ const action = async (command, forced = false) => {
       url: chrome.runtime.getManifest().homepage_url
     });
   }
+
+  if (command === 'focus-mode') {
+    const atb = (await query({
+      active: true,
+      currentWindow: true
+    })).shift();
+    chrome.tabs.update(atb.id, {
+      muted: false
+    });
+    icon(atb.id, false);
+
+    // switch to mute-all-other-tabs
+    command = 'mute-all-other-tabs';
+  }
+
   const tabs = new Set();
   if (command === 'mute-tab' || command === 'unmute-tab' || command === 'toggle-tab') {
     forced = false;
