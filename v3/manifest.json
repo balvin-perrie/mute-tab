@@ -81,6 +81,10 @@
       "description": "Close All Other Noisy Tabs"
     }
   },
+  "options_ui": {
+    "page": "data/options/index.html",
+    "open_in_tab": true
+  },
   "browser_specific_settings": {
     "gecko": {
       "id": "{b0ee5055-362a-44d4-804f-7358ef544ec9}",

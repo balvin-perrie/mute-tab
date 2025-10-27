@@ -163,6 +163,7 @@ chrome.commands.onCommand.addListener(command => action(command, false));
 /* Monitor and Mute */
 const observe = {
   normal(tab) {
+    console.log(tab);
     if (tab.incognito === false) {
       chrome.tabs.update(tab.id, {
         muted: true
@@ -175,20 +176,53 @@ const observe = {
         muted: true
       });
     }
+  },
+  async unmute(tabId, info, tab) {
+    if (info.status === 'complete') {
+      try {
+        const {hostname} = new URL(tab.url);
+        if (hostname) {
+          const prefs = await chrome.storage.local.get({
+            'silent-normal': false,
+            'silent-incognito': false,
+            'unmute-list': []
+          });
+          if (prefs['unmute-list'].some(s => hostname.includes(s))) {
+            if (
+              (tab.incognito === false && prefs['silent-normal']) ||
+              (tab.incognito && prefs['silent-incognito'])
+            ) {
+              console.info('[unmuting]', tab.url);
+              chrome.tabs.update(tab.id, {
+                muted: false
+              });
+            }
+          }
+        }
+      }
+      catch (e) {}
+    }
   }
 };
 
 chrome.storage.local.get({
   'silent-normal': false,
-  'silent-incognito': false
+  'silent-incognito': false,
+  'unmute-list': []
 }, prefs => {
+  chrome.tabs.onCreated.removeListener(observe.normal);
   if (prefs['silent-normal']) {
-    chrome.tabs.onCreated.removeListener(observe.normal);
     chrome.tabs.onCreated.addListener(observe.normal);
   }
+  chrome.tabs.onCreated.removeListener(observe.incognito);
   if (prefs['silent-incognito']) {
-    chrome.tabs.onCreated.removeListener(observe.incognito);
     chrome.tabs.onCreated.addListener(observe.incognito);
+  }
+  chrome.tabs.onUpdated.removeListener(observe.unmute);
+  if (prefs['silent-normal'] || prefs['silent-incognito']) {
+    if (prefs['unmute-list'].length > 0) {
+      chrome.tabs.onUpdated.addListener(observe.unmute);
+    }
   }
 });
 chrome.storage.onChanged.addListener(ps => {
@@ -202,6 +236,19 @@ chrome.storage.onChanged.addListener(ps => {
     chrome.tabs.onCreated.removeListener(observe.incognito);
     if (ps['silent-incognito'].newValue === true) {
       chrome.tabs.onCreated.addListener(observe.incognito);
+    }
+  }
+  if (ps['unmute-list']) {
+    chrome.tabs.onUpdated.removeListener(observe.unmute);
+    if (ps['unmute-list'].newValue.length > 0) {
+      chrome.storage.local.get({
+        'silent-normal': false,
+        'silent-incognito': false
+      }, prefs => {
+        if (prefs['silent-normal'] || prefs['silent-incognito']) {
+          chrome.tabs.onUpdated.addListener(observe.unmute);
+        }
+      });
     }
   }
 });
