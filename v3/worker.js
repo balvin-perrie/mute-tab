@@ -163,7 +163,6 @@ chrome.commands.onCommand.addListener(command => action(command, false));
 /* Monitor and Mute */
 const observe = {
   normal(tab) {
-    console.log(tab);
     if (tab.incognito === false) {
       chrome.tabs.update(tab.id, {
         muted: true
@@ -183,20 +182,13 @@ const observe = {
         const {hostname} = new URL(tab.url);
         if (hostname) {
           const prefs = await chrome.storage.local.get({
-            'silent-normal': false,
-            'silent-incognito': false,
             'unmute-list': []
           });
           if (prefs['unmute-list'].some(s => hostname.includes(s))) {
-            if (
-              (tab.incognito === false && prefs['silent-normal']) ||
-              (tab.incognito && prefs['silent-incognito'])
-            ) {
-              console.info('[unmuting]', tab.url);
-              chrome.tabs.update(tab.id, {
-                muted: false
-              });
-            }
+            console.info('[unmuting]', tab.url);
+            chrome.tabs.update(tab.id, {
+              muted: false
+            });
           }
         }
       }
@@ -219,10 +211,8 @@ chrome.storage.local.get({
     chrome.tabs.onCreated.addListener(observe.incognito);
   }
   chrome.tabs.onUpdated.removeListener(observe.unmute);
-  if (prefs['silent-normal'] || prefs['silent-incognito']) {
-    if (prefs['unmute-list'].length > 0) {
-      chrome.tabs.onUpdated.addListener(observe.unmute);
-    }
+  if (prefs['unmute-list'].length > 0) {
+    chrome.tabs.onUpdated.addListener(observe.unmute);
   }
 });
 chrome.storage.onChanged.addListener(ps => {
@@ -241,14 +231,7 @@ chrome.storage.onChanged.addListener(ps => {
   if (ps['unmute-list']) {
     chrome.tabs.onUpdated.removeListener(observe.unmute);
     if (ps['unmute-list'].newValue.length > 0) {
-      chrome.storage.local.get({
-        'silent-normal': false,
-        'silent-incognito': false
-      }, prefs => {
-        if (prefs['silent-normal'] || prefs['silent-incognito']) {
-          chrome.tabs.onUpdated.addListener(observe.unmute);
-        }
-      });
+      chrome.tabs.onUpdated.addListener(observe.unmute);
     }
   }
 });
@@ -367,7 +350,10 @@ const contexts = (b, contexts = ['page']) => {
   }
   else {
     if (chrome.contextMenus) {
-      chrome.contextMenus.onClicked.removeListener(contexts.onClicked);
+      try {
+        chrome.contextMenus.onClicked.removeListener(contexts.onClicked);
+      }
+      catch (e) {}
       chrome.contextMenus.removeAll();
     }
   }

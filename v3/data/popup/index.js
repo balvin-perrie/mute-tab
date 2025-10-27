@@ -1,5 +1,7 @@
 'use strict';
 
+const isFF = navigator.userAgent.includes('Firefox');
+
 const validate = () => new Promise(resolve => chrome.extension.isAllowedIncognitoAccess(a => {
   if (a === false) {
     alert('Please enable Incognito access!');
@@ -57,7 +59,7 @@ document.addEventListener('click', async e => {
   let command = target.dataset.command;
   if (command === 'tabs-permission') {
     chrome.permissions.request({
-      permissions: ['tabs', 'favicon']
+      permissions: isFF ? ['tabs'] : ['tabs', 'favicon']
     }, granted => {
       if (granted) {
         list();
@@ -122,7 +124,7 @@ document.getElementById('tools').addEventListener('change', async e => {
 });
 
 chrome.permissions.contains({
-  permissions: ['tabs', 'favicon']
+  permissions: isFF ? ['tabs'] : ['tabs', 'favicon']
 }, granted => {
   if (granted) {
     list();

@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "0.2.8",
+  "version": "0.2.9",
   "name": "Mute Tab",
   "description": "__MSG_description__",
   "default_locale": "en",
@@ -11,6 +11,9 @@
   "optional_permissions": [
     "tabs",
     "favicon"
+  ],
+  "optional_host_permissions": [
+    "*://*/*"
   ],
   "background": {
     "service_worker": "worker.js",
