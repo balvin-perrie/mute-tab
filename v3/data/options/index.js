@@ -13,3 +13,7 @@ document.getElementById('save').onclick = () => chrome.storage.local.set({
   toast.textContent = 'Options saved';
   setTimeout(() => toast.textContent = '', 1000);
 });
+
+document.getElementById('faqs').onclick = () => chrome.tabs.create({
+  url: chrome.runtime.getManifest().homepage_url
+});
