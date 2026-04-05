@@ -380,6 +380,33 @@ chrome.storage.onChanged.addListener(ps => {
   chrome.runtime.onStartup.addListener(once);
 }
 
+// Simple/Interface modes
+{
+  const startup = async () => {
+    if (startup.done) {
+      return;
+    }
+    startup.done = true;
+    const prefs = await chrome.storage.local.get({
+      'open-mode': 'popup'
+    });
+    chrome.action.setPopup({
+      popup: prefs['open-mode'] === 'popup' ? '/data/popup/index.html' : ''
+    });
+  };
+  chrome.runtime.onStartup.addListener(startup);
+  chrome.runtime.onInstalled.addListener(startup);
+}
+chrome.storage.onChanged.addListener(ps => {
+  if (ps['open-mode']) {
+    chrome.action.setPopup({
+      popup: ps['open-mode'].newValue === 'popup' ? '/data/popup/index.html' : ''
+    });
+  }
+});
+chrome.action.onClicked.addListener(() => chrome.storage.local.get({
+  'open-mode': 'toggle-tab'
+}).then(prefs => action(prefs['open-mode'], false)));
 
 /* FAQs & Feedback */
 {

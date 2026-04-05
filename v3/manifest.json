@@ -30,8 +30,8 @@
     "512": "data/icons/512.png"
   },
   "action":{
-    "default_popup": "data/popup/index.html",
-    "default_title": "Tab can play audio"
+    "default_popup": "",
+    "default_title": "Tab can play audio.\n\nUse options page to switch to simple mode."
   },
   "commands": {
     "_execute_action": {},

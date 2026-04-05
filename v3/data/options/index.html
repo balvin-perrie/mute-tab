@@ -7,6 +7,20 @@
   <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
+  <h2>Action Button</h2>
+  <div class="two">
+    <label for="open-mode"><p>In "One-Click" mode, the extension works as a toggle to mute or unmute. You can still use keyword shortcuts to access all additional features.</p></label>
+    <select id="open-mode">
+      <option value="toggle-tab">One-click - Toggle Mute (This Tab)</option>
+      <option value="toggle-other-tabs-window">One-click - Toggle Mute (Other Tabs in This Window)</option>
+      <option value="toggle-tabs-other-windows">One-click - Toggle Mute (Tabs in Other Windows)</option>
+      <option value="toggle-all-other-tabs">One-click - Toggle Mute (All Other Tabs)</option>
+      <option value="toggle-all-incognito-tabs">One-click - Toggle Mute (All Incognito Tabs)</option>
+      <option value="popup">Show Interface</option>
+    </select>
+  </div>
+
+  <h2>Automation</h2>
   <p>Comma-separated list of hostnames used to automatically unmute tabs with matching addresses. You can enter full or partial hostnames — if a match is detected, the tab will be unmuted automatically. This feature requires the "*://*/*" permission to access tab URLs.</p>
   <textarea rows="5" id="unmute-list" placeholder="e.g.: example.com, google.com"></textarea>
 

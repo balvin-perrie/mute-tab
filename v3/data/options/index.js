@@ -1,7 +1,9 @@
 chrome.storage.local.get({
-  'unmute-list': []
+  'unmute-list': [],
+  'open-mode': 'popup'
 }).then(prefs => {
   document.getElementById('unmute-list').value = prefs['unmute-list'].join(', ');
+  document.getElementById('open-mode').value = prefs['open-mode'];
 });
 
 document.getElementById('save').onclick = async () => {
@@ -17,7 +19,8 @@ document.getElementById('save').onclick = async () => {
     catch (e) {}
   }
   await chrome.storage.local.set({
-    'unmute-list': hosts
+    'unmute-list': hosts,
+    'open-mode': document.getElementById('open-mode').value
   });
   const toast = document.getElementById('toast');
   toast.textContent = 'Options saved';
