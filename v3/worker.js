@@ -368,9 +368,7 @@ const buildMenu = async () => {
     });
   }
 };
-if (chrome.contextMenus) {
-  chrome.contextMenus.onClicked.removeListener(info => action(info.menuItemId.replace('-alt', ''), false));
-}
+chrome.contextMenus.onClicked.addListener(info => action(info.menuItemId.replace('-alt', ''), false));
 
 chrome.storage.onChanged.addListener(ps => {
   if (ps['page-context'] || ps['tab-context']) {
