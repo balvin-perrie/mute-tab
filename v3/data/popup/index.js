@@ -12,17 +12,6 @@ const validate = () => new Promise(resolve => chrome.extension.isAllowedIncognit
   resolve();
 }));
 
-const permission = () => new Promise(resolve => {
-  try {
-    chrome.permissions.request({
-      permissions: ['contextMenus']
-    }, resolve);
-  }
-  catch (e) { // Firefox
-    resolve(true);
-  }
-});
-
 const list = async () => {
   const tabs = await chrome.tabs.query({});
   const t = document.getElementById('entry');
@@ -74,6 +63,9 @@ document.addEventListener('click', async e => {
       focused: true
     });
   }
+  else if (command === 'options') {
+    chrome.runtime.openOptionsPage();
+  }
   else if (command) {
     if (command.includes('incognito')) {
       await validate();
@@ -97,24 +89,16 @@ document.addEventListener('click', async e => {
 
 chrome.storage.local.get({
   'silent-normal': false,
-  'silent-incognito': false,
-  'page-context': false
+  'silent-incognito': false
 }, prefs => {
   document.getElementById('silent-normal').checked = prefs['silent-normal'];
   document.getElementById('silent-incognito').checked = prefs['silent-incognito'];
-  document.getElementById('page-context').checked = prefs['page-context'];
 });
 
 document.getElementById('tools').addEventListener('change', async e => {
   if (e.target.id) {
     if (e.target.id.includes('incognito') && e.target.checked) {
       await validate();
-    }
-    if (e.target.id === 'page-context' && e.target.checked) {
-      if (await permission() !== true) {
-        e.target.checked = false;
-        return;
-      }
     }
 
     chrome.storage.local.set({

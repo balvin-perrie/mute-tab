@@ -61,16 +61,14 @@ table {
   }
 }
 footer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1px;
+  display: flex;
+  gap: 1px;
   & > * {
     background-color: var(--bg-alt);
+    flex: 1;
   }
 }
 body[tabs-ready] footer {
-  grid-template-columns: 1fr;
-
   input[data-command="tabs-permission"] {
     display: none;
   }

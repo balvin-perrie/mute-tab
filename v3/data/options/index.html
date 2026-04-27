@@ -19,6 +19,13 @@
       <option value="popup">Show Interface</option>
     </select>
   </div>
+  <h2>Context Menu</h2>
+  <div class="two">
+    <label for="page-context">Include extension actions in "page" context menu</label>
+    <input type="checkbox" id="page-context">
+    <label for="tab-context">Include extension actions in "tab" context menu (Firefox Only)</label>
+    <input type="checkbox" id="tab-context">
+  </div>
 
   <h2>Automation</h2>
   <p>Comma-separated list of hostnames used to automatically unmute tabs with matching addresses. You can enter full or partial hostnames — if a match is detected, the tab will be unmuted automatically. This feature requires the "*://*/*" permission to access tab URLs.</p>
@@ -30,8 +37,7 @@
     <span id="toast"></span>
   </p>
 
-  <h2>Access Extension's Keyboard Shortcuts</h2>
-
+  <h2>Keyboard Shortcuts</h2>
   <div>
     <p><b>[Google Chrome]</b> Open extension shortcut settings page: <a href="chrome://extensions/shortcuts" target="_blank">chrome://extensions/shortcuts</a></p>
   </div>
