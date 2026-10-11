@@ -81,13 +81,18 @@ input[type=button] {
   color: var(--fg);
 }
 
-#tools {
+.tools {
   border-top: 2px solid var(--bg-alt);
   padding: 10px 5px;
   display: grid;
   grid-template-columns: min-content 1fr;
   grid-gap: 5px;
   align-items: center;
+}
+
+.tools input[type=checkbox]:disabled,
+.tools input[type=checkbox]:disabled + label {
+  opacity: 0.6;
 }
 
 .spacer {

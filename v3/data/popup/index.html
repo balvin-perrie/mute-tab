@@ -69,13 +69,17 @@ Use Shift key to only mute audible tabs or to limit unmuting only to audible and
         </tr>
       </table>
     </div>
-    <div id="tools">
+    <div id="monitor" class="tools">
       <input type="checkbox" id="silent-normal">
-      <label for="silent-normal">Monitor and Mute all new Tabs (not incognito)</label>
+      <label for="silent-normal">Mute all new Tabs (not incognito)</label>
       <input type="checkbox" id="silent-incognito">
-      <label for="silent-incognito">Monitor and Mute all new Incognito Tabs</label>
+      <label for="silent-incognito">Mute all new Incognito Tabs</label>
+    </div>
+    <div id="watch" class="tools">
       <input type="checkbox" id="watch-mode">
       <label for="watch-mode" title="Mute all tabs in all windows except the active one. On disable, tabs muted by this feature are unmuted.">Mute all tabs except the active one</label>
+      <input type="checkbox" id="watch-unfocused" disabled>
+      <label for="watch-unfocused" title="Requires the option above. Mute all tabs (including the previously active one) when the browser loses focus, e.g. when you switch to another program. Tabs are unmuted on the next focus or tab switch.">When browser is not focused, mute all tabs</label>
     </div>
     <footer>
       <input type="button" value="List Noisy Tabs" data-command="tabs-permission">

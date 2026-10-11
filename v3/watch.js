@@ -10,6 +10,7 @@
 
   const muted = new Set(); // tab ids muted by the watcher
   let enabled = false;
+  let unfocused = false; // watch-unfocused
 
   // Persist the muted list so it survives service-worker restarts.
   // chrome.storage.session lives in memory, but outlives the worker;
@@ -54,10 +55,30 @@
     }
   };
 
+  // mute all tabs across all windows (no active-tab exception);
+  // used when the browser loses focus
+  const muteAll = async () => {
+    if (enabled === false || unfocused === false) {
+      return;
+    }
+    for (const tab of await chrome.tabs.query({})) {
+      if (tab.mutedInfo?.muted === false) {
+        mute(tab.id);
+      }
+    }
+  };
+
   const onActivated = () => apply();
   const onFocusChanged = windowId => {
-    // -1 when a window loses focus; only care about focus gains
-    if (windowId !== chrome.windows.WINDOW_ID_NONE) {
+    // -1 when a window loses focus
+    if (windowId === chrome.windows.WINDOW_ID_NONE) {
+      // mute all tabs (no active-tab exception) when the browser
+      // loses focus and the option is enabled
+      if (unfocused) {
+        muteAll();
+      }
+    }
+    else {
       apply();
     }
   };
@@ -101,9 +122,11 @@
     catch (e) {}
 
     const prefs = await chrome.storage.local.get({
-      'watch-mode': false
+      'watch-mode': false,
+      'watch-unfocused': false
     });
     enabled = prefs['watch-mode'];
+    unfocused = prefs['watch-unfocused'];
     ready = true;
     activate();
   };
@@ -117,6 +140,9 @@
       if (ready) {
         activate();
       }
+    }
+    if (ps['watch-unfocused']) {
+      unfocused = ps['watch-unfocused'].newValue;
     }
   });
 }

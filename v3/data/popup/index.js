@@ -90,23 +90,39 @@ document.addEventListener('click', async e => {
 chrome.storage.local.get({
   'silent-normal': false,
   'silent-incognito': false,
-  'watch-mode': false
+  'watch-mode': false,
+  'watch-unfocused': false
 }, prefs => {
   document.getElementById('silent-normal').checked = prefs['silent-normal'];
   document.getElementById('silent-incognito').checked = prefs['silent-incognito'];
   document.getElementById('watch-mode').checked = prefs['watch-mode'];
+  document.getElementById('watch-unfocused').checked = prefs['watch-unfocused'];
+  // only accessible when watch-mode is enabled
+  document.getElementById('watch-unfocused').disabled = prefs['watch-mode'] === false;
 });
 
-document.getElementById('tools').addEventListener('change', async e => {
-  if (e.target.id) {
-    if (e.target.id.includes('incognito') && e.target.checked) {
-      await validate();
-    }
+document.querySelectorAll('.tools').forEach(section => {
+  section.addEventListener('change', async e => {
+    if (e.target.id) {
+      if (e.target.id.includes('incognito') && e.target.checked) {
+        await validate();
+      }
 
-    chrome.storage.local.set({
-      [e.target.id]: e.target.checked
-    });
-  }
+      // watch-unfocused is only accessible when watch-mode is enabled
+      if (e.target.id === 'watch-mode') {
+        const wu = document.getElementById('watch-unfocused');
+        wu.disabled = e.target.checked === false;
+        if (wu.disabled) {
+          wu.checked = false;
+          await chrome.storage.local.set({'watch-unfocused': false});
+        }
+      }
+
+      chrome.storage.local.set({
+        [e.target.id]: e.target.checked
+      });
+    }
+  });
 });
 
 chrome.permissions.contains({
