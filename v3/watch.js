@@ -88,6 +88,7 @@
   };
 
   // load persisted list first, then the preference
+  let ready = false;
   const init = async () => {
     try {
       const o = await chrome.storage.session.get({
@@ -103,17 +104,17 @@
       'watch-mode': false
     });
     enabled = prefs['watch-mode'];
+    ready = true;
     activate();
   };
   init();
-  init.then(() => init.done = true);
 
   chrome.storage.onChanged.addListener(ps => {
     if (ps['watch-mode']) {
       enabled = ps['watch-mode'].newValue;
       // ignore if init() has not loaded the persisted list yet;
       // init() will apply the correct state
-      if (init.done) {
+      if (ready) {
         activate();
       }
     }
