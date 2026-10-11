@@ -17,7 +17,7 @@
   ],
   "background": {
     "service_worker": "worker.js",
-    "scripts": ["worker.js"]
+    "scripts": ["worker.js", "watch.js"]
   },
   "homepage_url": "https://webextension.org/listing/mute-tab.html",
   "icons": {

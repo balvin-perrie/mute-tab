@@ -89,10 +89,12 @@ document.addEventListener('click', async e => {
 
 chrome.storage.local.get({
   'silent-normal': false,
-  'silent-incognito': false
+  'silent-incognito': false,
+  'watch-mode': false
 }, prefs => {
   document.getElementById('silent-normal').checked = prefs['silent-normal'];
   document.getElementById('silent-incognito').checked = prefs['silent-incognito'];
+  document.getElementById('watch-mode').checked = prefs['watch-mode'];
 });
 
 document.getElementById('tools').addEventListener('change', async e => {

@@ -1,5 +1,9 @@
 'use strict';
 
+try {
+  importScripts('/watch.js');
+} catch (e) {} // Firefox event page loads watch.js via manifest "scripts"
+
 const query = opts => chrome.tabs.query(opts);
 
 const icon = (tabId, muted) => {
